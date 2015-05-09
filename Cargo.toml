@@ -5,6 +5,7 @@ authors = ["Dmitry Egorov <degorov86@gmail.com>"]
 
 [dependencies.elmesque]
 git = "https://github.com/mitchmindtree/elmesque.git"
+version = "*"
 
 [dependencies.pistoncore-glutin_window]
 git = "https://github.com/PistonDevelopers/glutin_window.git"
@@ -36,5 +37,13 @@ version = "*"
 [dependencies.piston2d-graphics]
 git = "https://github.com/PistonDevelopers/graphics.git"
 
+[dependencies.piston-viewport]
+git = "https://github.com/PistonDevelopers/viewport.git"
+
+[dependencies.fps_counter]
+git = "https://github.com/pistondevelopers/fps_counter.git"
+
 [dependencies]
 num = "*"
+vecmath = "*"
+rand = "*"
