@@ -1,7 +1,7 @@
 extern crate nalgebra;
 
 use nalgebra::{Vec2, Norm};
-use model::resource::*;
+use model::resource::Resource;
 use std::f64;
 
 pub struct Rover

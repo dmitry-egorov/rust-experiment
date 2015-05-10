@@ -49,7 +49,7 @@ fn main() {
     let fixed_dt = 1.0 / (fps as f64);
 
     let events = window.events().ups(fps).max_fps(fps);
-    let mut world = default_world(50, &mut rand::thread_rng());
+    let mut world = default_world(10, &mut rand::thread_rng());
     let mut counter = fps_counter::FPSCounter::new();
 
     for event in events
