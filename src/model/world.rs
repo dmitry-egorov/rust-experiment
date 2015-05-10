@@ -1,10 +1,13 @@
-extern crate rand;
+extern crate nalgebra;
 
+use nalgebra::Vec2;
+use num::traits::Zero;
 use model::rover::*;
 use model::resource::*;
 use rand::Rng;
 
-pub struct World {
+pub struct World
+{
     pub rover: Rover,
     pub resources: Vec<Resource>,
 }
@@ -14,18 +17,18 @@ pub fn default_world<R: Rng>(count: i32, rng: &mut R) -> World
     World {
         rover : Rover
         {
-            position : [0.0, 0.0],
-            direction : [0.0, 1.0],
+            position : Vec2::zero(),
+            direction : Vec2::y(),
             speed: 0.0
         },
         resources :
         (0..count)
         .map(move |_| Resource {
             position:
-            [
-                rng.gen::<f64>() * 40.0 - 20.0,
-                rng.gen::<f64>() * 40.0 - 20.0
-            ]
+            Vec2::new(
+                rng.gen::<f64>() * 20.0 - 10.0,
+                rng.gen::<f64>() * 20.0 - 10.0
+            )
         })
         .collect()
     }

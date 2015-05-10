@@ -2,20 +2,21 @@
 name = "rust-experiment"
 version = "0.1.0"
 dependencies = [
+ "conrod 0.0.10 (git+https://github.com/PistonDevelopers/conrod.git)",
  "elmesque 0.0.3 (git+https://github.com/mitchmindtree/elmesque.git)",
  "fps_counter 0.0.2 (git+https://github.com/pistondevelopers/fps_counter.git)",
  "gfx 0.3.1 (git+https://github.com/gfx-rs/gfx-rs)",
  "gfx_device_gl 0.2.5 (git+https://github.com/gfx-rs/gfx_device_gl.git)",
+ "nalgebra 0.2.13 (git+https://github.com/sebcrozet/nalgebra.git)",
  "num 0.1.24 (registry+https://github.com/rust-lang/crates.io-index)",
  "piston 0.1.1 (git+https://github.com/PistonDevelopers/piston.git)",
  "piston-gfx_texture 0.0.6 (git+https://github.com/PistonDevelopers/gfx_texture.git)",
- "piston-viewport 0.0.2 (git+https://github.com/PistonDevelopers/viewport)",
+ "piston-viewport 0.0.2 (git+https://github.com/PistonDevelopers/viewport.git)",
  "piston2d-gfx_graphics 0.1.18 (git+https://github.com/PistonDevelopers/gfx_graphics.git)",
  "piston2d-graphics 0.0.46 (git+https://github.com/PistonDevelopers/graphics.git)",
  "pistoncore-glutin_window 0.0.8 (git+https://github.com/PistonDevelopers/glutin_window.git)",
  "rand 0.3.8 (registry+https://github.com/rust-lang/crates.io-index)",
  "shader_version 0.0.6 (git+https://github.com/PistonDevelopers/shader_version)",
- "vecmath 0.0.22 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -39,6 +40,22 @@ version = "0.0.5"
 source = "git+https://github.com/tomaka/clock_ticks#462848731d99ed2f800e2e5a19e2d8ca3b11c90c"
 dependencies = [
  "libc 0.1.7 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "conrod"
+version = "0.0.10"
+source = "git+https://github.com/PistonDevelopers/conrod.git#f80870ce3058c750ec5c79a7d12264ee2d6e9376"
+dependencies = [
+ "bitflags 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "clock_ticks 0.0.5 (git+https://github.com/tomaka/clock_ticks)",
+ "elmesque 0.0.3 (git+https://github.com/mitchmindtree/elmesque.git)",
+ "num 0.1.24 (registry+https://github.com/rust-lang/crates.io-index)",
+ "piston 0.1.1 (git+https://github.com/PistonDevelopers/piston.git)",
+ "piston2d-graphics 0.0.46 (git+https://github.com/PistonDevelopers/graphics.git)",
+ "rand 0.3.8 (registry+https://github.com/rust-lang/crates.io-index)",
+ "rustc-serialize 0.3.14 (registry+https://github.com/rust-lang/crates.io-index)",
+ "vecmath 0.0.22 (git+https://github.com/PistonDevelopers/vecmath.git)",
 ]
 
 [[package]]
@@ -319,6 +336,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "nalgebra"
+version = "0.2.13"
+source = "git+https://github.com/sebcrozet/nalgebra.git#0b1969d4d5472f258f90ac97952590d7026fcbc9"
+dependencies = [
+ "num 0.1.24 (registry+https://github.com/rust-lang/crates.io-index)",
+ "rand 0.3.8 (registry+https://github.com/rust-lang/crates.io-index)",
+ "rustc-serialize 0.3.14 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "num"
 version = "0.1.24"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -351,8 +378,8 @@ version = "0.1.1"
 source = "git+https://github.com/PistonDevelopers/piston.git#e4b588cf22275acb230a4d6baace2567ea66391a"
 dependencies = [
  "pistoncore-event 0.1.3 (git+https://github.com/pistondevelopers/event)",
- "pistoncore-input 0.0.9 (git+https://github.com/PistonDevelopers/input)",
- "pistoncore-window 0.1.2 (git+https://github.com/PistonDevelopers/window)",
+ "pistoncore-input 0.0.9 (git+https://github.com/pistondevelopers/input)",
+ "pistoncore-window 0.1.2 (git+https://github.com/pistondevelopers/window)",
 ]
 
 [[package]]
@@ -388,7 +415,7 @@ source = "git+https://github.com/PistonDevelopers/texture#3cc4cddc3f8c51c36ea11d
 [[package]]
 name = "piston-viewport"
 version = "0.0.2"
-source = "git+https://github.com/PistonDevelopers/viewport#3819edeb0982d2552669e03ad9c0317e75340510"
+source = "git+https://github.com/PistonDevelopers/viewport.git#3819edeb0982d2552669e03ad9c0317e75340510"
 dependencies = [
  "piston-float 0.0.1 (git+https://github.com/pistondevelopers/float)",
 ]
@@ -414,9 +441,9 @@ dependencies = [
  "draw_state 0.0.7 (git+https://github.com/gfx-rs/draw_state)",
  "interpolation 0.0.5 (git+https://github.com/PistonDevelopers/interpolation)",
  "piston-texture 0.0.1 (git+https://github.com/PistonDevelopers/texture)",
- "piston-viewport 0.0.2 (git+https://github.com/PistonDevelopers/viewport)",
+ "piston-viewport 0.0.2 (git+https://github.com/PistonDevelopers/viewport.git)",
  "read_color 0.0.2 (git+https://github.com/PistonDevelopers/read_color)",
- "vecmath 0.0.22 (git+https://github.com/PistonDevelopers/vecmath)",
+ "vecmath 0.0.22 (git+https://github.com/PistonDevelopers/vecmath.git)",
 ]
 
 [[package]]
@@ -425,8 +452,8 @@ version = "0.1.3"
 source = "git+https://github.com/pistondevelopers/event#c51e721f4b346fe7cc8a4c0e2658a70d257202ce"
 dependencies = [
  "pistoncore-event_loop 0.1.5 (git+https://github.com/PistonDevelopers/event_loop)",
- "pistoncore-input 0.0.9 (git+https://github.com/PistonDevelopers/input)",
- "pistoncore-window 0.1.2 (git+https://github.com/PistonDevelopers/window)",
+ "pistoncore-input 0.0.9 (git+https://github.com/pistondevelopers/input)",
+ "pistoncore-window 0.1.2 (git+https://github.com/pistondevelopers/window)",
 ]
 
 [[package]]
@@ -435,8 +462,8 @@ version = "0.1.5"
 source = "git+https://github.com/PistonDevelopers/event_loop#d7541e44e33016b0584579e800879120cf982639"
 dependencies = [
  "clock_ticks 0.0.5 (git+https://github.com/tomaka/clock_ticks)",
- "piston-viewport 0.0.2 (git+https://github.com/PistonDevelopers/viewport)",
- "pistoncore-window 0.1.2 (git+https://github.com/PistonDevelopers/window)",
+ "piston-viewport 0.0.2 (git+https://github.com/PistonDevelopers/viewport.git)",
+ "pistoncore-window 0.1.2 (git+https://github.com/pistondevelopers/window)",
 ]
 
 [[package]]
@@ -446,15 +473,15 @@ source = "git+https://github.com/PistonDevelopers/glutin_window.git#4eed79ca7d8f
 dependencies = [
  "gl 0.0.12 (git+https://github.com/bjz/gl-rs)",
  "glutin 0.1.3 (git+https://github.com/tomaka/glutin)",
- "pistoncore-input 0.0.9 (git+https://github.com/PistonDevelopers/input)",
- "pistoncore-window 0.1.2 (git+https://github.com/PistonDevelopers/window)",
+ "pistoncore-input 0.0.9 (git+https://github.com/pistondevelopers/input)",
+ "pistoncore-window 0.1.2 (git+https://github.com/pistondevelopers/window)",
  "shader_version 0.0.6 (git+https://github.com/PistonDevelopers/shader_version)",
 ]
 
 [[package]]
 name = "pistoncore-input"
 version = "0.0.9"
-source = "git+https://github.com/PistonDevelopers/input#cb0615041f0dd1e4cd1cfc6d4e0e4bae0a575a8e"
+source = "git+https://github.com/pistondevelopers/input#cb0615041f0dd1e4cd1cfc6d4e0e4bae0a575a8e"
 dependencies = [
  "bitflags 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "num 0.1.24 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -464,10 +491,10 @@ dependencies = [
 [[package]]
 name = "pistoncore-window"
 version = "0.1.2"
-source = "git+https://github.com/PistonDevelopers/window#73314c130ce0b8fc22e47fc636a4724b6e02a365"
+source = "git+https://github.com/pistondevelopers/window#73314c130ce0b8fc22e47fc636a4724b6e02a365"
 dependencies = [
  "libc 0.1.7 (registry+https://github.com/rust-lang/crates.io-index)",
- "pistoncore-input 0.0.9 (git+https://github.com/PistonDevelopers/input)",
+ "pistoncore-input 0.0.9 (git+https://github.com/pistondevelopers/input)",
 ]
 
 [[package]]
@@ -518,7 +545,7 @@ dependencies = [
 [[package]]
 name = "vecmath"
 version = "0.0.22"
-source = "git+https://github.com/PistonDevelopers/vecmath#d6bb5cf609b51cae8f296945e179bd42a74c9a51"
+source = "git+https://github.com/PistonDevelopers/vecmath.git#d6bb5cf609b51cae8f296945e179bd42a74c9a51"
 dependencies = [
  "piston-float 0.0.1 (git+https://github.com/pistondevelopers/float)",
 ]

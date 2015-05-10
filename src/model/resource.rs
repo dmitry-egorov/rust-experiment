@@ -1,7 +1,8 @@
-extern crate vecmath;
+extern crate nalgebra;
 
-use self::vecmath::*;
+use nalgebra::Vec2;
 
-pub struct Resource {
-    pub position: Vector2<f64>,
+pub struct Resource
+{
+    pub position: Vec2<f64>,
 }
