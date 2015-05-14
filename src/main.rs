@@ -6,24 +6,26 @@ extern crate graphics;
 extern crate shader_version;
 extern crate piston;
 extern crate rand;
-extern crate fps_counter;
 extern crate elmesque;
 extern crate num;
 extern crate viewport;
 extern crate nalgebra;
+extern crate drag_controller;
 
 use elmesque::Renderer;
 use gfx::traits::*;
 use gfx_graphics::{Gfx2d, GlyphCache};
 use glutin_window::{GlutinWindow, OpenGL};
-use piston::event::{Event, Events};
+use piston::event::*;
 use piston::window::{Size, Window, WindowSettings};
+use drag_controller::{DragController, Drag};
 
-mod world_renderer;
-mod ui_renderer;
 mod model;
+mod view;
+mod ui;
 
 use model::world::*;
+use ui::ui::Ui;
 
 fn main() {
 
@@ -45,42 +47,57 @@ fn main() {
     let font_path = ::std::path::Path::new("./assets/NotoSans/NotoSans-Regular.ttf");
     let mut glyph_cache = GlyphCache::new(&font_path, &mut factory).unwrap();
 
-    let fps = 50;
+    let fps = 60;
     let fixed_dt = 1.0 / (fps as f64);
 
+    let mut drag = DragController::new();
+
     let events = window.events().ups(fps).max_fps(fps);
-    let mut world = default_world(10, &mut rand::thread_rng());
-    let mut counter = fps_counter::FPSCounter::new();
+    let mut world = World::default(10, 15, &mut rand::thread_rng());
+    let mut ui = Ui::new();
 
     for event in events
     {
-        match event
+        if let Some(args) = event.render_args()
         {
-            Event::Render(args) =>
+            let (w, h) = (args.width as f64, args.height as f64);
+
+            ui = ui.update_viewport(w, h);
+
+            let world_form = view::render(h, &world);
+            let ui_form = ui.render(&world);
+
+            let element = elmesque::form::collage(w as i32, h as i32, vec![world_form, ui_form]);
+
+            g2d.draw(&mut renderer, &output, args.viewport(), |_, graphics|
             {
-                let (w, h) = (args.width as f64, args.height as f64);
+                let mut renderer = Renderer::new(w, h, graphics).character_cache(&mut glyph_cache);
+                element.draw(&mut renderer);
+            });
 
-                let world_form = world_renderer::render(w, h, &world);
-                let ui_form = ui_renderer::render(w, h, counter.tick());
+            device.submit(renderer.as_buffer());
+            renderer.reset();
+            glyph_cache.update(&mut factory);
+        }
 
-                // Convert the form to an `Element` for rendering.
-                let element =
-                    elmesque::form::collage(w as i32, h as i32, vec![world_form, ui_form])
-                    .clear(elmesque::color::black());
+        if let Some(_) = event.update_args()
+        {
+            world = world.update(fixed_dt);
+        }
 
-                g2d.draw(&mut renderer, &output, args.viewport(), |_, graphics|
-                {
-                    let mut renderer = Renderer::new(w, h, graphics).character_cache(&mut glyph_cache);
-                    element.draw(&mut renderer);
-                });
+        let mut click = None;
 
+        drag.event(&event, |action| {
+            match action {
+                Drag::End(x, y) => {click = Some((x, y)); false},
+                Drag::Interrupt => false,
+                _ => true
+            }
+        });
 
-                device.submit(renderer.as_buffer());
-                renderer.reset();
-                glyph_cache.update(&mut factory);
-            },
-            Event::Update(_) => world = update_world(world, fixed_dt),
-            _ => (),
+        if let Some((x, y)) = click
+        {
+             ui = ui.select_rover(x, y, &world)
         }
     }
 }

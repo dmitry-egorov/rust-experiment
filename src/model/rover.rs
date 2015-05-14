@@ -4,52 +4,113 @@ use nalgebra::{Vec2, Norm};
 use model::resource::Resource;
 use std::f64;
 
+pub type RoverId = u32;
+
 pub struct Rover
 {
-    pub position: Vec2<f64>,
-    pub direction: Vec2<f64>,
-    pub speed: f64
+    id: RoverId,
+
+    position: Vec2<f64>,
+    direction: Vec2<f64>,
+    speed: f64,
+
+    hit_points: f64
 }
 
-pub fn update_rover(rover: Rover, resources: &[Resource], dt: f64) -> Rover
+impl Rover
 {
-    let r = find_target(rover, resources);
-    apply_velocity(r, dt)
-}
+    pub fn new(id: u32, position: Vec2<f64>) -> Self
+    {
+        Rover
+        {
+            id: id,
 
+            position: position,
+            direction: Vec2::y(),
+            speed: 0.0,
 
-
-fn find_target(rover: Rover, resources: &[Resource]) -> Rover
-{
-    let rover_speed = 2.0;
-    let closest_resource = find_closest_resource(&rover, resources);
-
-    match closest_resource {
-        Some(resource) =>
-            Rover {
-              direction: (resource.position - rover.position).normalize(),
-              speed    : rover_speed,
-              ..rover
-            },
-        _ => rover
+            hit_points: 100.0
+        }
     }
 
-}
+    pub fn id(&self) -> RoverId
+    {
+        self.id
+    }
 
-fn apply_velocity(rover: Rover, dt: f64) -> Rover
-{
-  let delta = rover.direction * (rover.speed * dt);
+    pub fn position(&self) -> Vec2<f64>
+    {
+        self.position
+    }
 
-  Rover {position: rover.position + delta, ..rover }
-}
+    pub fn direction(&self) -> Vec2<f64>
+    {
+        self.direction
+    }
 
-fn find_closest_resource<'a>(rover: &Rover, resources: &'a [Resource]) -> Option<&'a Resource>
-{
-    let (r, _) =
-        resources
-        .iter()
-        .map(|resource| (Some(resource), (resource.position - rover.position).sqnorm()))
-        .fold((None, f64::INFINITY), |(r1, d1), (r2, d2)| (if d1 < d2 {(r1, d1)} else {(r2, d2)}));
+    pub fn speed(&self) -> f64
+    {
+        self.speed
+    }
 
-    r
+    pub fn update(self, resources: &[Resource], dt: f64) -> Self
+    {
+        self
+        .age(dt)
+        .find_target(resources)
+        .apply_velocity(dt)
+    }
+
+    pub fn is_alive(&self) -> bool
+    {
+        self.hit_points > 0.0
+    }
+
+    pub fn sq_distance_from(&self, position: Vec2<f64>) -> f64
+    {
+        (self.position - position).sqnorm()
+    }
+
+    fn age(self, dt: f64) -> Self
+    {
+        let hp_per_second = 2.0;
+
+        Rover {hit_points: self.hit_points - hp_per_second * dt, ..self}
+    }
+
+    fn find_target(self, resources: &[Resource]) -> Self
+    {
+        let rover_speed = 2.0;
+
+        self
+        .find_closest_resource(resources)
+        .map(|resource|
+        {
+            Rover {
+                direction: resource.direction_from(self.position),
+                speed    : rover_speed,
+                ..self
+            }
+        })
+        .unwrap_or_else(|| {self})
+    }
+
+    fn apply_velocity(self, dt: f64) -> Self
+    {
+      let delta = self.direction * (self.speed * dt);
+
+      Rover {position: self.position + delta, ..self }
+    }
+
+    fn find_closest_resource<'a>(&self, resources: &'a [Resource]) -> Option<&'a Resource>
+    {
+        //TODO: remove duplicate in world
+        let (r, _) =
+            resources
+            .iter()
+            .map(|resource| (Some(resource), resource.sq_distance_from(self.position)))
+            .fold((None, f64::INFINITY), |(r1, d1), (r2, d2)| (if d1 < d2 {(r1, d1)} else {(r2, d2)}));
+
+        r
+    }
 }

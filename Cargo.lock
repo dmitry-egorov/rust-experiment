@@ -12,6 +12,7 @@ dependencies = [
  "piston 0.1.1 (git+https://github.com/PistonDevelopers/piston.git)",
  "piston-gfx_texture 0.0.6 (git+https://github.com/PistonDevelopers/gfx_texture.git)",
  "piston-viewport 0.0.2 (git+https://github.com/PistonDevelopers/viewport.git)",
+ "piston2d-drag_controller 0.0.2 (git+https://github.com/PistonDevelopers/drag_controller.git)",
  "piston2d-gfx_graphics 0.1.18 (git+https://github.com/PistonDevelopers/gfx_graphics.git)",
  "piston2d-graphics 0.0.46 (git+https://github.com/PistonDevelopers/graphics.git)",
  "pistoncore-glutin_window 0.0.8 (git+https://github.com/PistonDevelopers/glutin_window.git)",
@@ -418,6 +419,15 @@ version = "0.0.2"
 source = "git+https://github.com/PistonDevelopers/viewport.git#3819edeb0982d2552669e03ad9c0317e75340510"
 dependencies = [
  "piston-float 0.0.1 (git+https://github.com/pistondevelopers/float)",
+]
+
+[[package]]
+name = "piston2d-drag_controller"
+version = "0.0.2"
+source = "git+https://github.com/PistonDevelopers/drag_controller.git#41417fa2307e980125c7c1b87dd299c4184254be"
+dependencies = [
+ "pistoncore-event 0.1.3 (git+https://github.com/pistondevelopers/event)",
+ "pistoncore-input 0.0.9 (git+https://github.com/pistondevelopers/input)",
 ]
 
 [[package]]

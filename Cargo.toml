@@ -36,6 +36,9 @@ git = "https://github.com/PistonDevelopers/viewport.git"
 [dependencies.fps_counter]
 git = "https://github.com/pistondevelopers/fps_counter.git"
 
+[dependencies.piston2d-drag_controller]
+git = "https://github.com/PistonDevelopers/drag_controller.git"
+
 [dependencies.conrod]
 git = "https://github.com/PistonDevelopers/conrod.git"
 
