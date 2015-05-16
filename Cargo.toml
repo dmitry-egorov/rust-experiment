@@ -4,7 +4,7 @@ version = "0.1.0"
 authors = ["Dmitry Egorov <degorov86@gmail.com>"]
 
 [dependencies.elmesque]
-git = "https://github.com/dmitry-egorov/elmesque.git"
+git = "https://github.com/mitchmindtree/elmesque.git"
 
 [dependencies.pistoncore-glutin_window]
 git = "https://github.com/PistonDevelopers/glutin_window.git"
@@ -38,9 +38,6 @@ git = "https://github.com/pistondevelopers/fps_counter.git"
 
 [dependencies.piston2d-drag_controller]
 git = "https://github.com/PistonDevelopers/drag_controller.git"
-
-[dependencies.conrod]
-git = "https://github.com/PistonDevelopers/conrod.git"
 
 [dependencies.nalgebra]
 git = "https://github.com/sebcrozet/nalgebra.git"

@@ -2,8 +2,7 @@
 name = "rust-experiment"
 version = "0.1.0"
 dependencies = [
- "conrod 0.0.10 (git+https://github.com/PistonDevelopers/conrod.git)",
- "elmesque 0.0.3 (git+https://github.com/dmitry-egorov/elmesque.git)",
+ "elmesque 0.0.3 (git+https://github.com/mitchmindtree/elmesque.git)",
  "fps_counter 0.0.2 (git+https://github.com/pistondevelopers/fps_counter.git)",
  "gfx 0.4.2 (git+https://github.com/gfx-rs/gfx-rs)",
  "gfx_device_gl 0.2.7 (git+https://github.com/gfx-rs/gfx_device_gl.git)",
@@ -44,22 +43,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "conrod"
-version = "0.0.10"
-source = "git+https://github.com/PistonDevelopers/conrod.git#0422b37a8d17dab1a19db957b0b1d37b41aaacf6"
-dependencies = [
- "bitflags 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
- "clock_ticks 0.0.5 (git+https://github.com/tomaka/clock_ticks)",
- "elmesque 0.0.3 (git+https://github.com/mitchmindtree/elmesque)",
- "num 0.1.24 (registry+https://github.com/rust-lang/crates.io-index)",
- "piston 0.1.1 (git+https://github.com/PistonDevelopers/piston.git)",
- "piston2d-graphics 0.0.46 (git+https://github.com/PistonDevelopers/graphics.git)",
- "rand 0.3.8 (registry+https://github.com/rust-lang/crates.io-index)",
- "rustc-serialize 0.3.14 (registry+https://github.com/rust-lang/crates.io-index)",
- "vecmath 0.0.22 (git+https://github.com/PistonDevelopers/vecmath)",
-]
-
-[[package]]
 name = "draw_state"
 version = "0.0.7"
 source = "git+https://github.com/gfx-rs/draw_state#44a0aed11abccbf970fc7efbe84b6482f0548248"
@@ -78,19 +61,7 @@ dependencies = [
 [[package]]
 name = "elmesque"
 version = "0.0.3"
-source = "git+https://github.com/dmitry-egorov/elmesque.git#99f57059507bb3877d44ccd8f7c9eaa852985cd0"
-dependencies = [
- "num 0.1.24 (registry+https://github.com/rust-lang/crates.io-index)",
- "piston2d-graphics 0.0.46 (git+https://github.com/PistonDevelopers/graphics.git)",
- "rand 0.3.8 (registry+https://github.com/rust-lang/crates.io-index)",
- "rustc-serialize 0.3.14 (registry+https://github.com/rust-lang/crates.io-index)",
- "vecmath 0.0.22 (registry+https://github.com/rust-lang/crates.io-index)",
-]
-
-[[package]]
-name = "elmesque"
-version = "0.0.3"
-source = "git+https://github.com/mitchmindtree/elmesque#8e5c230f4167dd1a6bbcd77a882131b1c322b23b"
+source = "git+https://github.com/mitchmindtree/elmesque.git#620a24b5cff48c89dc4b965a012baf9649fe9106"
 dependencies = [
  "num 0.1.24 (registry+https://github.com/rust-lang/crates.io-index)",
  "piston2d-graphics 0.0.46 (git+https://github.com/PistonDevelopers/graphics.git)",
