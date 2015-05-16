@@ -44,6 +44,7 @@ impl Ui
         if rover_info_form.is_some() {forms.push(rover_info_form.unwrap())};
 
         group(forms)
+        .shift(-self.width / 2.0 + 5.0, self.height / 2.0 -10.0)
     }
 
     pub fn update_viewport(self, w: f64, h: f64) -> Self
@@ -61,37 +62,33 @@ impl Ui
     pub fn render_fps(&self, fps: usize) -> Form
     {
         self.text(format!("fps: {}", fps))
-        .shift(30.0, -10.0)
     }
 
     pub fn render_rover_info(&self, world: &World) -> Option<Form>
     {
         self.selected_rover_id
-        .and_then(|id| world.get_rover(id))
-        .map(|rover|
+        .and_then(|id| world.get_rover(id).map(|r| (id, r)))
+        .map(|(id, rover)|
         {
             let pos = rover.position();
             let dir = rover.direction();
             group(vec![
-                self.text(format!("id: {}", rover.id()))
-                .shift(20.0, -25.0),
+                self.text(format!("id: {}", id))
+                .shift_y(-15.0),
                 self.text(format!("pos: {:.2}, {:.2}", pos.x, pos.y))
-                .shift(57.0, -40.0),
+                .shift_y(-30.0),
                 self.text(format!("dir: {:.2} {:.2}", dir.x, dir.y))
-                .shift(57.0, -55.0),
+                .shift_y(-45.0),
                 self.text(format!("speed:{:.2}", rover.speed()))
-                .shift(45.0, -70.0),
+                .shift_y(-60.0),
+                self.text(format!("hp:{:.2}", rover.hit_points()))
+                .shift_y(-75.0),
             ])
         })
     }
 
     fn text(&self, txt: String) -> Form
     {
-        self.shift_to_zero(text(Text::from_string(txt).color(white())))
-    }
-
-    fn shift_to_zero(&self, form: Form) -> Form
-    {
-        form.shift(-self.width / 2.0, self.height / 2.0)
+        text(Text::from_string(txt).color(white()).position(Position::ToRight))
     }
 }

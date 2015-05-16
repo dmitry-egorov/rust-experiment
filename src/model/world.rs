@@ -1,7 +1,6 @@
 extern crate nalgebra;
 
 use ::nalgebra::Vec2;
-use num::traits::Zero;
 use model::rover::*;
 use model::resource::*;
 use rand::Rng;

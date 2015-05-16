@@ -53,6 +53,11 @@ impl Rover
         self.speed
     }
 
+    pub fn hit_points(&self) -> f64
+    {
+        self.hit_points
+    }
+
     pub fn update(self, resources: &[Resource], dt: f64) -> Self
     {
         self

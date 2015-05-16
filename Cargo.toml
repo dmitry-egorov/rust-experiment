@@ -4,7 +4,7 @@ version = "0.1.0"
 authors = ["Dmitry Egorov <degorov86@gmail.com>"]
 
 [dependencies.elmesque]
-git = "https://github.com/mitchmindtree/elmesque.git"
+git = "https://github.com/dmitry-egorov/elmesque.git"
 
 [dependencies.pistoncore-glutin_window]
 git = "https://github.com/PistonDevelopers/glutin_window.git"
